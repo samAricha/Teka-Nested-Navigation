@@ -11,13 +11,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import teka.android.tekanestednavigation.navigation.RootNavGraph
+import androidx.navigation.compose.rememberNavController
+import teka.android.tekanestednavigation.navigation.MainNavGraph
 import teka.android.tekanestednavigation.navigation.Screen
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun EntryScreen( navHostController: NavHostController){
-
+fun EntryScreen(navHostController: NavHostController = rememberNavController() ){
+//    val navHostController = rememberNavController() --- can also be placed here
     Scaffold(
         topBar = {
             TopAppBar(backgroundColor = MaterialTheme.colors.primary,
@@ -74,18 +75,18 @@ fun EntryScreen( navHostController: NavHostController){
                 )
 
                 BottomNavigationItem(
-                    selected = currentRoute?.startsWith(Screen.Login.route) == true,
+                    selected = currentRoute?.startsWith(Screen.Settings.route) == true,
                     onClick = {
-                        navHostController.navigate(route = Screen.Login.route)
+                        navHostController.navigate(route = Screen.Settings.route)
                     },
                     icon = {
                         Icon(
-                            painter = painterResource(R.drawable.add_to_list),
-                            contentDescription = "Login"
+                            painter = painterResource(R.drawable.baseline_settings_24),
+                            contentDescription = "Settings"
                         )
                     },
                     label = {
-                        Text(text = "Login")
+                        Text(text = "Settings")
                     }
                 )
             }
@@ -93,9 +94,8 @@ fun EntryScreen( navHostController: NavHostController){
 
     ) {
 
-        RootNavGraph(navController = navHostController)
-
-
+        MainNavGraph(navHostController = navHostController,
+            startDestination = Screen.Home.route)
 
     }
 
