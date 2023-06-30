@@ -27,7 +27,7 @@ fun LoginScreen(navController: NavHostController) {
             modifier = Modifier.padding(bottom = 16.dp)
         )
         Button(
-            onClick = { navController.navigate(Screen.Home.route) },
+            onClick = { navController.navigate(TO_MAIN_GRAPH_ROUTE) },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 20.dp)
